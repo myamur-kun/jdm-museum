@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JDM Museum — Легенды японского автопрома</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-alt: #0f0f0f;
+      --bg-card: #151515;
+      --bg-card-grad: linear-gradient(180deg, #1c1c1c 0%, #111111 100%);
+      --red: #c41e3a;
+      --red-hover: #e63950;
+      --text: #ffffff;
+      --text-muted: #888888;
+      --text-dim: #aaaaaa;
+      --border: #222222;
+      --border-light: #2a2a2a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 80px;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-main {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 3px;
+    }
+
+    .logo-sub {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 48px;
+    }
+
+    .nav a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      color: #cccccc;
+      transition: color 0.2s;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: inherit;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--text);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-hover);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #444444;
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: #666;
+    }
+
+    .header-cta {
+      width: 180px;
+      height: 36px;
+      font-size: 12px;
+      border-radius: 2px;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 720px;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 40%, #0d0d0d 100%);
+      display: flex;
+      align-items: center;
+      padding: 80px 80px 60px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1040px;
+      height: 360px;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 520px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-label {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: var(--red);
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-size: 64px;
+      font-weight: 300;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-dim);
+      margin-bottom: 40px;
+    }
+
+    .hero-desc p {
+      margin-bottom: 8px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 20px;
+    }
+
+    .hero-actions .btn {
+      width: 200px;
+      height: 52px;
+      font-size: 14px;
+      border-radius: 2px;
+    }
+
+    .hero-card {
+      position: relative;
+      width: 560px;
+      background: #151515;
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-left: 60px;
+    }
+
+    .hero-card-img {
+      height: 400px;
+      background: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-card-img::before {
+      content: '';
+      position: absolute;
+      width: 320px;
+      height: 120px;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    .hero-card-img span {
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #555;
+    }
+
+    .hero-card-img small {
+      font-size: 11px;
+      color: #444;
+      margin-top: 8px;
+    }
+
+    .hero-card-caption {
+      padding: 20px 24px;
+      background: #111;
+    }
+
+    .hero-card-caption h3 {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .hero-card-caption p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ========== BENEFITS ========== */
+    .benefits {
+      background: var(--bg-alt);
+      padding: 48px 80px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .benefit {
+      display: flex;
+      gap: 16px;
+    }
+
+    .benefit-bar {
+      width: 4px;
+      height: 48px;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .benefit h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .benefit p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ========== COLLECTION ========== */
+    .section {
+      padding: 80px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 300;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    .view-all {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: var(--red);
+      transition: opacity 0.2s;
+    }
+
+    .view-all:hover {
+      opacity: 0.8;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--bg-card-grad);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .card-img {
+      height: 220px;
+      background: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 12px;
+      border-radius: 2px;
+    }
+
+    .card-img span {
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #444;
+    }
+
+    .card-img small {
+      font-size: 11px;
+      color: #333;
+      margin-top: 6px;
+    }
+
+    .card-body {
+      padding: 8px 24px 28px;
+    }
+
+    .card-body h3 {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .card-body p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .card-link {
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--red);
+    }
+
+    /* ========== EVENTS ========== */
+    .events {
+      background: var(--bg-alt);
+      padding: 80px;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 48px;
+    }
+
+    .event-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .event-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: var(--red);
+      border-radius: 4px 0 0 4px;
+    }
+
+    .event-date {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+
+    .event-card h3 {
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .event-card p {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 8px;
+      flex-grow: 1;
+    }
+
+    .event-card .btn {
+      width: 140px;
+      height: 40px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border-radius: 2px;
+      margin-top: 20px;
+    }
+
+    /* ========== TICKETS TEASER ========== */
+    .tickets {
+      padding: 60px 80px;
+    }
+
+    .tickets-box {
+      background: #141414;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 48px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tickets-text h2 {
+      font-size: 28px;
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+
+    .tickets-text p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .tickets-text .btn {
+      width: 180px;
+      height: 48px;
+      font-size: 13px;
+      border-radius: 2px;
+    }
+
+    .tickets-price {
+      text-align: left;
+    }
+
+    .tickets-price .label {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .tickets-price .price {
+      font-size: 36px;
+      font-weight: 300;
+      margin-bottom: 8px;
+    }
+
+    .tickets-price .note {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: #080808;
+      border-top: 1px solid #1a1a1a;
+      padding: 60px 80px 40px;
+    }
+
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      margin-bottom: 40px;
+    }
+
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .footer-col a,
+    .footer-col p {
+      display: block;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--text);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1a1a1a;
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1200px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+      .benefits {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero {
+        flex-direction: column;
+        padding: 60px 40px;
+      }
+      .hero-card {
+        margin-left: 0;
+        margin-top: 40px;
+        width: 100%;
+        max-width: 560px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 0 24px;
+      }
+      .nav {
+        display: none;
+      }
+      .section, .events, .tickets, .footer, .benefits {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .hero-title {
+        font-size: 40px;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-cols {
+        grid-template-columns: 1fr 1fr;
+      }
+      .tickets-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-main">JDM MUSEUM</span>
+      <span class="logo-sub">JAPANESE AUTOMOTIVE CULTURE</span>
+    </div>
+    <nav class="nav">
+      <a href="#collection">КОЛЛЕКЦИЯ</a>
+      <a href="#events">АФИША</a>
+      <a href="#tickets">БИЛЕТЫ</a>
+      <a href="#about">О МУЗЕЕ</a>
+      <a href="#contacts">КОНТАКТЫ</a>
+    </nav>
+    <a href="#tickets" class="btn btn-primary header-cta">КУПИТЬ БИЛЕТ</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-label">МУЗЕЙ ЯПОНСКОГО АВТОПРОМА</p>
+      <h1 class="hero-title">Легенды JDM.<br>В одном месте.</h1>
+      <div class="hero-desc">
+        <p>Редкие японские автомобили 80–90-х.</p>
+        <p>Культовые модели, которых нет на обычных выставках.</p>
+        <p>Онлайн-билеты за 3 шага. Без очередей.</p>
+      </div>
+      <div class="hero-actions">
+        <a href="#tickets" class="btn btn-primary">КУПИТЬ БИЛЕТ</a>
+        <a href="#collection" class="btn btn-outline">СМОТРЕТЬ КОЛЛЕКЦИЮ</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-img">
+        <span>NISSAN SKYLINE GT-R R34</span>
+        <small>1999 · BNR34</small>
+      </div>
+      <div class="hero-card-caption">
+        <h3>Флагман коллекции</h3>
+        <p>Один из самых желанных JDM-автомобилей в мире</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="benefits">
+    <div class="benefit">
+      <div class="benefit-bar"></div>
+      <div>
+        <h4>БЕЗ ОЧЕРЕДЕЙ</h4>
+        <p>Электронный билет — сразу на вход</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-bar"></div>
+      <div>
+        <h4>ПУШКИНСКАЯ КАРТА</h4>
+        <p>Оплата доступна в 2 клика</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-bar"></div>
+      <div>
+        <h4>РЕДКИЕ ЭКСПОНАТЫ</h4>
+        <p>Модели, которых нет на других выставках</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-bar"></div>
+      <div>
+        <h4>3 ШАГА ДО БИЛЕТА</h4>
+        <p>Выбрал → Оплатил → Пришёл</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTION -->
+  <section class="section" id="collection">
+    <div class="section-header">
+      <div>
+        <p class="section-label">КОЛЛЕКЦИЯ</p>
+        <h2 class="section-title">Уникальные экспонаты</h2>
+        <p class="section-subtitle">Выберите автомобиль и узнайте его историю до визита</p>
+      </div>
+      <a href="#" class="view-all">СМОТРЕТЬ ВСЕ →</a>
+    </div>
+    <div class="cards-grid">
+      <article class="card">
+        <div class="card-img">
+          <span>TOYOTA SUPRA</span>
+          <small>A80 · 1993</small>
+        </div>
+        <div class="card-body">
+          <h3>Toyota Supra A80</h3>
+          <p>Легенда 90-х. 2JZ-GTE.</p>
+          <a href="#" class="card-link">ПОДРОБНЕЕ →</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-img">
+          <span>MAZDA RX-7</span>
+          <small>FD3S · 1992</small>
+        </div>
+        <div class="card-body">
+          <h3>Mazda RX-7 FD</h3>
+          <p>Роторный шедевр.</p>
+          <a href="#" class="card-link">ПОДРОБНЕЕ →</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-img">
+          <span>HONDA NSX</span>
+          <small>NA1 · 1990</small>
+        </div>
+        <div class="card-body">
+          <h3>Honda NSX</h3>
+          <p>Японский суперкар.</p>
+          <a href="#" class="card-link">ПОДРОБНЕЕ →</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-img">
+          <span>NISSAN SILVIA</span>
+          <small>S15 · 1999</small>
+        </div>
+        <div class="card-body">
+          <h3>Nissan Silvia S15</h3>
+          <p>Дрифт-икона.</p>
+          <a href="#" class="card-link">ПОДРОБНЕЕ →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="events" id="events">
+    <p class="section-label">АФИША</p>
+    <h2 class="section-title">Ближайшие события</h2>
+    <div class="events-grid">
+      <article class="event-card">
+        <p class="event-date">24 ОКТ · 19:00</p>
+        <h3>Ночь JDM</h3>
+        <p>Специальная экскурсия при приглушённом свете + живой DJ-сет</p>
+        <a href="#" class="btn btn-outline">ЗАПИСАТЬСЯ</a>
+      </article>
+      <article class="event-card">
+        <p class="event-date">2 НОЯ · 14:00</p>
+        <h3>Лекция: История GT-R</h3>
+        <p>От R32 до R34 — путь легенды. Спикер — коллекционер и журналист</p>
+        <a href="#" class="btn btn-outline">ЗАПИСАТЬСЯ</a>
+      </article>
+      <article class="event-card">
+        <p class="event-date">15 НОЯ · 12:00</p>
+        <h3>Фотодень в музее</h3>
+        <p>Профессиональный свет и открытый доступ к экспонатам</p>
+        <a href="#" class="btn btn-outline">ЗАПИСАТЬСЯ</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- TICKETS -->
+  <section class="tickets" id="tickets">
+    <div class="tickets-box">
+      <div class="tickets-text">
+        <h2>Билеты онлайн — максимум 3 шага</h2>
+        <p>Выберите дату → Укажите данные → Оплатите (в т.ч. Пушкинской картой)</p>
+        <a href="#" class="btn btn-primary">ВЫБРАТЬ БИЛЕТ</a>
+      </div>
+      <div class="tickets-price">
+        <p class="label">Взрослый билет от</p>
+        <p class="price">890 ₽</p>
+        <p class="note">Студенческий · Пушкинская карта</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contacts">
+    <div class="footer-logo">JDM MUSEUM</div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>НАВИГАЦИЯ</h4>
+        <a href="#collection">Коллекция</a>
+        <a href="#events">Афиша</a>
+        <a href="#tickets">Билеты</a>
+        <a href="#about">О музее</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+      <div class="footer-col">
+        <h4>ПОСЕТИТЕЛЯМ</h4>
+        <a href="#">Режим работы</a>
+        <a href="#">Как добраться</a>
+        <a href="#">Пушкинская карта</a>
+        <a href="#">Цены и скидки</a>
+        <a href="#">Правила посещения</a>
+      </div>
+      <div class="footer-col">
+        <h4>СОЦСЕТИ</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Telegram</a>
+        <a href="#">YouTube</a>
+        <a href="#">VK</a>
+      </div>
+      <div class="footer-col">
+        <h4>КОНТАКТЫ</h4>
+        <p>Москва, ул. Примерная, 12</p>
+        <p>+7 (495) 000-00-00</p>
+        <p>info@jdmmuseum.ru</p>
+        <p>Ежедневно 11:00–21:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 JDM Museum. Все права защищены.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Пользовательское соглашение</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
